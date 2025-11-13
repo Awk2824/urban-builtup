@@ -1,0 +1,13 @@
+rasterio
+shapely
+fiona
+tqdm
+psycopg2-binary
+tensorflow
+numpy
+pandas
+geopandas
+joblib
+matplotlib
+scikit-image
+scikit-learn

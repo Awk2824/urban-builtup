@@ -1,0 +1,217 @@
+﻿<Page x:Class="BuildUpLandApp.Pages.Panduan.Panduan"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BuildUpLandApp.Pages.Panduan"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Panduan"
+      Background="White">
+
+    <Page.Resources>
+        <!-- Style untuk Teks Deskripsi -->
+        <Style x:Key="DescriptionTextStyle" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="#4A5568"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <!-- Style untuk Judul Panduan -->
+        <Style x:Key="GuideHeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#1A202C"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+        </Style>
+        <!-- Style untuk Sub-Judul Langkah -->
+        <Style x:Key="StepHeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#2B6CB0"/>
+            <Setter Property="Margin" Value="0,15,0,5"/>
+        </Style>
+        <!-- Style untuk Tombol Navigasi Panduan -->
+        <Style x:Key="NavButtonStyle" TargetType="RadioButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#2D3748"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#E2E8F0"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#4299E1"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Konten Panduan (didefinisikan sebagai Resource) -->
+        <StackPanel x:Key="PanduanSelamatDatang" Margin="20">
+            <TextBlock Style="{StaticResource GuideHeaderStyle}">Panduan Penggunaan Aplikasi</TextBlock>
+            <TextBlock Style="{StaticResource DescriptionTextStyle}" FontSize="15">
+                Aplikasi ini memiliki dua fungsi utama:
+            </TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
+                <TextBlock Text="1." FontWeight="Bold" Margin="0,0,5,0"/>
+                <TextBlock Text="Mengklasifikasikan lahan terbangun dari citra satelit."/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
+                <TextBlock Text="2." FontWeight="Bold" Margin="0,0,5,0"/>
+                <TextBlock Text="Memprediksi luas lahan terbangun di masa depan."/>
+            </StackPanel>
+            <TextBlock Style="{StaticResource DescriptionTextStyle}" Margin="0,20,0,0">
+                Silakan pilih topik panduan di sebelah kiri untuk melihat petunjuk langkah demi langkah.
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel x:Key="PanduanKlasifikasi" Margin="20">
+            <TextBlock Style="{StaticResource GuideHeaderStyle}">Panduan Klasifikasi</TextBlock>
+            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                 Halaman ini memiliki alur kerja 3 langkah untuk mengklasifikasikan lahan terbangun menggunakan model Regresi Logistik.
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource StepHeaderStyle}">Langkah 1: Persiapan Data (Potong Citra)</TextBlock>
+            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                 Tujuan dari langkah ini adalah memotong citra satelit yang besar menggunakan batas wilayah (shapefile) dan menyimpannya ke database.
+                 <LineBreak/>
+                 1. Klik tombol "Pilih folder citra..." dan pilih folder tanggal (misal: "2018_05_10") dari dalam folder "Dataset" Anda.
+                 <LineBreak/>
+                    Pastikan folder citra memiliki format nama "yyyy_mm_dd" (misal: "2018_05_10").
+                 <LineBreak/>
+                 2. Klik tombol "Pilih shapefile..." dan pilih file .shp (misal: "Batuceper.shp") dari dalam folder "Shapefile" Anda.
+                 <LineBreak/>
+                 3. Klik tombol "Mulai Proses Potong Citra".
+                 <LineBreak/>
+                 4. Aplikasi akan secara otomatis memproses semua citra yang ada dalam folder tanggal di "Dataset" dengan shapefile di "Shapefile". Proses ini mungkin memakan waktu lama.
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource StepHeaderStyle}">Langkah 2: Pelatihan Model Regresi Logistik</TextBlock>
+            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                Setelah data disiapkan, model dilatih untuk belajar membedakan lahan terbangun dan non-terbangun.
+                 <LineBreak/>
+                 1. Klik tombol "Mulai Pelatihan Regresi Logistik".
+                 <LineBreak/>
+                 2. Aplikasi akan mengambil semua data yang telah dipotong di Langkah 1 dan menggunakannya untuk melatih model.
+                 <LineBreak/>
+                 3. Setelah selesai, hasil evaluasi (Akurasi, Presisi, dll.) akan muncul di kotak di bawahnya.
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource StepHeaderStyle}">Langkah 3: Klasifikasi Citra</TextBlock>
+            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                Setelah model dilatih, model dapat digunakan untuk mengklasifikasi citra baru atau citra yang sudah ada.
+                 <LineBreak/>
+                 <Bold>Opsi 1 (Citra Baru):</Bold>
+                 <LineBreak/>
+                 - Klik "Pilih folder citra baru..." dan pilih folder tanggal citra yang ingin diuji.
+                 <LineBreak/>
+                 - Pilih "Kecamatan" dari dropdown di bawahnya (untuk menentukan batas potongnya).
+                 <LineBreak/>
+                 <Bold>Opsi 2 (Data Tersimpan):</Bold>
+                 <LineBreak/>
+                 - Pilih "Kecamatan" dan "Tanggal" dari data yang sudah ada di database.
+                 <LineBreak/>
+                 <LineBreak/>
+                 Setelah memilih salah satu opsi, klik "Mulai Klasifikasi".
+                 <LineBreak/>
+                 Aplikasi akan menampilkan dua gambar (Citra Asli dan Hasil Klasifikasi) serta menghitung total luas lahan terbangun dan non-terbangun.
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel x:Key="PanduanPrediksi" Margin="20">
+            <TextBlock Style="{StaticResource GuideHeaderStyle}">Panduan Prediksi (LSTM)</TextBlock>
+            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                 Halaman ini memiliki alur kerja 2 langkah untuk memprediksi luas lahan terbangun di masa depan menggunakan model LSTM (Long Short-Term Memory).
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource StepHeaderStyle}">Langkah 1: Pelatihan Model LSTM</TextBlock>
+            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                 <LineBreak/>
+                 1. Sesuaikan "Hyperparameter" seperti "Jumlah Epoch" atau "Learning Rate" atau biarkan nilai default.
+                 <LineBreak/>
+                 2. Klik tombol "Mulai Pelatihan LSTM".
+                 <LineBreak/>
+                 3. Aplikasi akan mengambil data deret waktu dari database dan melatih model.
+                 <LineBreak/>
+                 4. Setelah selesai, hasil evaluasi (MAE, MSE, RMSE) dan grafik R-Squared akan ditampilkan.
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource StepHeaderStyle}">Langkah 2: Prediksi Luas Lahan</TextBlock>
+            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                Gunakan model yang sudah dilatih untuk memprediksi masa depan.
+                 <LineBreak/>
+                 1. Pilih "Kecamatan" yang ingin Anda prediksi.
+                 <LineBreak/>
+                 2. Pilih "Tahun Target Prediksi" (misalnya, 2025).
+                 <LineBreak/>
+                 3. Klik "Mulai Prediksi".
+                 <LineBreak/>
+                 4. Aplikasi akan menampilkan estimasi total luas lahan terbangun untuk tahun tersebut dan sebuah grafik yang menunjukkan data historis dan prediksi.
+            </TextBlock>
+        </StackPanel>
+
+    </Page.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Tombol Kembali -->
+        <Button Content="←" Grid.Row="0"
+                BorderThickness="0" Background="Transparent" Foreground="#4A5568"
+                Width="40" Height="30" FontSize="20" FontWeight="Bold"
+                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"
+                Click="Back_Click" ToolTip="Kembali ke Beranda"/>
+
+        <!-- Judul Halaman -->
+        <TextBlock Grid.Row="0" Text="Panduan Aplikasi"
+                   FontSize="24" FontWeight="Bold" Foreground="#1A202C"
+                   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,20"/>
+
+        <Grid Grid.Row="1" Margin="10,0,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <!-- Kolom Navigasi -->
+                <ColumnDefinition Width="*"/>
+                <!-- Kolom Konten -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Panel Navigasi Kiri -->
+            <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                <TextBlock Text="TOPIK PANDUAN" FontWeight="SemiBold" FontSize="12" Foreground="#718096" Margin="10,0,0,5"/>
+                <RadioButton x:Name="KlasifikasiNavButton" Content="Klasifikasi (Regresi Logistik)" 
+                             Style="{StaticResource NavButtonStyle}" 
+                             GroupName="PanduanNav"
+                             Checked="PanduanKlasifikasi_Click"/>
+                <RadioButton x:Name="TimeSeriesNavButton" Content="Prediksi (LSTM)" 
+                             Style="{StaticResource NavButtonStyle}" 
+                             GroupName="PanduanNav"
+                             Checked="PanduanTimeSeries_Click"/>
+            </StackPanel>
+
+            <!-- Konten Panduan Kanan -->
+            <Border Grid.Column="1" Background="White" CornerRadius="8">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="1" BlurRadius="10" Color="#E2E8F0" Opacity="0.5"/>
+                </Border.Effect>
+                <!-- Konten akan dimuat di sini -->
+                <ContentControl x:Name="GuideContentControl"/>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

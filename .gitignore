@@ -205,3 +205,90 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+
+############################
+# .NET / Visual Studio
+############################
+
+# Visual Studio folder
+.vs/
+
+# Build results
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+build/
+[Bb]uild/
+[Bb]in/
+[Oo]bj/
+
+# Roslyn cache
+*.ide/
+
+# Rider / ReSharper
+.idea/
+*.sln.iml
+
+# User-specific files
+*.user
+*.userdata
+*.suo
+*.rsuser
+*.userosscache
+*.userprefs
+*.psess
+*.vsp
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.opendb
+
+# NuGet Packages
+packages/
+*.nupkg
+# NuGet restore folder (if exists)
+**/packages/*
+
+# Logs
+*.log
+
+# Database
+*.mdf
+*.ldf
+
+# Auto-generated backup
+*.bak
+
+# Publish output
+publish/
+*.pubxml
+*.publishproj
+
+# MSBuild
+*.tlog
+*.cache
+*.pdb
+
+# Test Results
+TestResults/
+*.coverage
+*.coveragexml
+
+# WPF specific
+*.g.cs
+*.g.i.cs
+*.baml
+*.xaml.cs.~*
+
+# Others
+*.tmp
+*.temp
+*.dbmdl
+*.jfm
+*.pfx
+*.key
