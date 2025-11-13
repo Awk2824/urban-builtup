@@ -1,0 +1,148 @@
+﻿<Page x:Class="BuildUpLandApp.Pages.Beranda.Beranda"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BuildUpLandApp.Pages.Beranda"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1200"
+      Title="Beranda"
+      Background="#F0F4F8">
+
+    <Page.Resources>
+        <!-- Style untuk Tombol Utama -->
+        <Style x:Key="MainButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#1A202C"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="10">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="2" BlurRadius="10" Color="#DDDDDD" Opacity="0.3"/>
+                            </Border.Effect>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#E2E8F0"/>
+                                <Setter TargetName="border" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="3" BlurRadius="12" Color="#CCCCCC" Opacity="0.4"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#CBD5E0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style untuk Tombol Sekunder -->
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#4299E1"/>
+            <!-- Warna biru -->
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="8">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="1" BlurRadius="5" Color="#A0AEC0" Opacity="0.4"/>
+                            </Border.Effect>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#2B6CB0"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#2C5282"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
+    <Grid Margin="75" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Row 0 -->
+        <Border Grid.Row="0" Background="White" CornerRadius="10" Padding="30" Margin="0,0,0,40" MaxWidth="650">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="2" BlurRadius="10" Color="#CCCCCC" Opacity="0.3"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Klasifikasi dan Prediksi Lahan Terbangun"
+                           FontSize="28" 
+                           FontWeight="Bold" 
+                           HorizontalAlignment="Center" 
+                           Margin="0,0,0,10"
+                           Foreground="#1A202C"/>
+                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Foreground="#4A5568" FontSize="14">
+                    Aplikasi ini menggunakan citra satelit Sentinel-2 untuk mengklasifikasikan lahan terbangun
+                    <LineBreak/>
+                    dan memprediksi luas lahan terbangun di masa depan dengan menggunakan 
+                    <LineBreak/>
+                    model Regresi Logistik dan LSTM
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+        <!-- Row 1 -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+            <Button Style="{StaticResource MainButtonStyle}" 
+                     Margin="0,0,20,0"
+                     Click="Klasifikasi_Click">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="&#xEC06;" FontFamily="Segoe MDL2 Assets" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <TextBlock Text="Klasifikasi Lahan Terbangun" FontWeight="SemiBold" TextAlignment="Center"/>
+                    <TextBlock Text="Identifikasi area terbangun" FontSize="11" Foreground="Gray" TextAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource MainButtonStyle}" 
+                     Margin="20,0,0,0"
+                     Click="TimeSeries_Click">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="&#xE9D9;" FontFamily="Segoe MDL2 Assets" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <TextBlock Text="Prediksi Luas Lahan Terbangun" FontWeight="SemiBold" TextAlignment="Center"/>
+                    <TextBlock Text="Perkirakan luas lahan terbangun di masa depan" FontSize="11" Foreground="Gray" TextAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+
+        <!-- Row 2 -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+            <Button Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,10,0" Click="Panduan_Click">
+                <TextBlock Text="Panduan Penggunaan"/>
+            </Button>
+            <Button Style="{StaticResource SecondaryButtonStyle}" Margin="10,0,0,0" Click="Tentang_Click">
+                <TextBlock Text="Tentang Aplikasi"/>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+
+</Page>
