@@ -28,7 +28,16 @@ def log_training_data(img_date_str, shapefile_path, processed_folder_path):
         result = cursor.fetchone()
 
         if result:
-            id_wilayah = result[0]
+            id_wilayah, existing_path = result
+            print(f"Wilayah '{nama_kec}' ditemukan dengan ID {id_wilayah}.")
+
+            # Update path_shp jika berbeda atau kosong
+            if existing_path != shapefile_path:
+                print(f"Memperbarui path untuk wilayah '{nama_kec}'...")
+                cursor.execute(
+                    "UPDATE wilayah_administrasi SET path_shp = %s WHERE id_wilayah = %s",
+                    (shapefile_path, id_wilayah)
+                )
         else:
             print(f"Wilayah '{nama_kec}' tidak ditemukan, memasukkan data baru...")
             cursor.execute(
