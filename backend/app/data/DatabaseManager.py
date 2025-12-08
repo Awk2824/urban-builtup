@@ -421,7 +421,7 @@ def get_latest_sequence_for_wilayah(id_wilayah: int, sequence_length: int):
                 else:
                     val = float(luas)
             except Exception:
-                print(f"Warning: gagal parse luas_terbangun: {luas}", file=sys.stderr)
+                print(f"Gagal parse luas_terbangun: {luas}", file=sys.stderr)
                 val = 0.0
 
             year = img_date.year
