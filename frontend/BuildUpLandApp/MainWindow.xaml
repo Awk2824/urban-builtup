@@ -5,14 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BuildUpLandApp"
         mc:Ignorable="d"
-        Title="BuildUpLand" Height="800" Width="1200"
+        Title="TerraBuilt" Height="800" Width="1200"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="SingleBorderWindow"
-        Icon="/Assets/BuildUpLand.ico">
+        Icon="/Assets/TerraBuilt.ico">
+    <Window.Background>
+        <ImageBrush ImageSource="pack://application:,,,/Assets/urbanbackground.jpg"
+                    Stretch="UniformToFill"/>
+    </Window.Background>
+    
     <Grid>
+        <Rectangle>
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0" Opacity="0.75">
+                    <GradientStop Color="DarkSlateGray" Offset="0"/>
+                    <GradientStop Color="BlanchedAlmond" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
         <Frame x:Name="MainFrame"
                NavigationUIVisibility="Hidden"
-               Background="White"/>
+               Background="Transparent"/>
     </Grid>
 </Window>

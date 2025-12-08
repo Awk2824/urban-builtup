@@ -5,55 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BuildUpLandApp.Pages.Tentang"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="800"
+      d:DesignHeight="2600" d:DesignWidth="1200"
       Title="Tentang"
-      Background="White">
-
-    <Page.Resources>
-        <!-- Style untuk Teks Deskripsi -->
-        <Style x:Key="DescriptionTextStyle" TargetType="TextBlock">
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Foreground" Value="#4A5568"/>
-            <Setter Property="Margin" Value="0,0,0,10"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="LineHeight" Value="20"/>
-        </Style>
-        <!-- Style untuk Judul Panduan -->
-        <Style x:Key="GuideHeaderStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="22"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#1A202C"/>
-            <Setter Property="Margin" Value="0,0,0,15"/>
-        </Style>
-        <!-- Style untuk Sub-Judul Langkah -->
-        <Style x:Key="StepHeaderStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Foreground" Value="#718096"/>
-            <Setter Property="Margin" Value="0,10,0,2"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
-        </Style>
-        <!-- Style untuk Border Section -->
-        <Style x:Key="SectionBorderStyle" TargetType="Border">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#E2E8F0"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="25"/>
-            <Setter Property="Margin" Value="0,0,0,20"/>
-            <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect ShadowDepth="1" BlurRadius="10" Color="#E2E8F0" Opacity="0.5"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!-- Style untuk Teks Konten -->
-        <Style x:Key="ContentTextStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="#2D3748"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
-        </Style>
-    </Page.Resources>
+      Background="Transparent">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -61,93 +15,209 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Tombol Kembali -->
         <Button Content="←" Grid.Row="0"
-                BorderThickness="0" Background="Transparent" Foreground="#4A5568"
+                BorderThickness="0" Background="White" Foreground="#4A5568"
                 Width="40" Height="30" FontSize="20" FontWeight="Bold"
-                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"
-                Click="Back_Click" ToolTip="Kembali ke Beranda"/>
+                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"
+                Click="Back_Click" ToolTip="Kembali"/>
 
-        <!-- Judul Halaman -->
-        <TextBlock Grid.Row="0" Text="Tentang Aplikasi dan Pengembang"
-                   FontSize="24" FontWeight="Bold" Foreground="#1A202C"
-                   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,20"/>
+        <Border Grid.Row="0" Style="{StaticResource SectionHeaderCardStyleInfo}">
+            <TextBlock Text="Tentang Aplikasi"
+                       FontSize="24" FontWeight="Bold" Foreground="#1A202C"
+                       HorizontalAlignment="Center"/>
+        </Border>
 
-        <Grid Grid.Row="1" Margin="20,0,20,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <!-- Kolom Kiri untuk Info Skripsi -->
-                <ColumnDefinition Width="320"/>
-                <!-- Kolom Kanan untuk Profil -->
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Margin="40,0,40,20">
+            <Border Style="{StaticResource SectionBorderStyle}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="0" Margin="5,0,-5,0">
+                    <StackPanel>
 
-            <!-- Kolom Kiri: Info Skripsi -->
-            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="0,0,20,0">
-                <StackPanel>
-                    <!-- Box Judul & Pembimbing -->
-                    <Border Style="{StaticResource SectionBorderStyle}">
-                        <StackPanel>
-                            <TextBlock Style="{StaticResource StepHeaderStyle}" Margin="0" Text="JUDUL SKRIPSI"/>
-                            <TextBlock Style="{StaticResource GuideHeaderStyle}" FontSize="20" Margin="0,0,0,15" TextWrapping="Wrap">
-                                Klasifikasi dan Prediksi Lahan Terbangun Berbasis Regresi Logistik dan Long Short Term Memory pada Citra Sentinel-2 di Wilayah Tangerang
-                            </TextBlock>
+                        <Grid Margin="0,6,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                            <Separator Background="#E2E8F0" Margin="0,5,0,15"/>
+                            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                <TextBlock Text="TerraBuilt" Style="{StaticResource GuideHeaderStyle}" Margin="0,0,0,6"/>
+                                <TextBlock Style="{StaticResource ContentTextStyle}">
+                                    TerraBuilt adalah aplikasi analisis spasial yang dirancang untuk <Bold>mengklasifikasikan lahan terbangun dan memprediksi pertumbuhannya di masa depan</Bold>. Aplikasi ini memanfaatkan citra satelit Sentinel-2 dan menggabungkan dua pendekatan machine learning, yaitu <Bold>regresi logistik</Bold> untuk klasifikasi biner dan <Bold>LSTM (Long Short-Term Memory)</Bold> untuk prediksi deret waktu. TerraBuilt dikembangkan sebagai prototipe untuk mendukung monitoring perubahan tata guna lahan dan perencanaan tata ruang daerah.
+                                </TextBlock>
+                            </StackPanel>
 
-                            <TextBlock Style="{StaticResource StepHeaderStyle}" Margin="0,0,0,5" Text="DOSEN PEMBIMBING"/>
-                            <TextBlock Style="{StaticResource ContentTextStyle}" Text="1. Prof. Dr. Ir. Dyah Erny Herwindiati, M.Si."/>
-                            <TextBlock Style="{StaticResource ContentTextStyle}" Text="2. Janson Hendryli, S.Kom., M.Kom." Margin="0,5,0,0"/>
-                        </StackPanel>
-                    </Border>
+                            <Border Grid.Column="1" Style="{StaticResource IllustrationBoxStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid>
+                                    <Rectangle Width="240" Height="240" HorizontalAlignment="Center">
+                                        <Rectangle.Fill>
+                                            <ImageBrush ImageSource="pack://application:,,,/Assets/TerraBuilt.png" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center"/>
+                                        </Rectangle.Fill>
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect ShadowDepth="2" BlurRadius="8" Color="#DADADA" Opacity="0.6"/>
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+                                </Grid>
+                            </Border>
+                        </Grid>
 
-                    <!-- Box Abstrak -->
-                    <Border Style="{StaticResource SectionBorderStyle}">
-                        <StackPanel>
-                            <TextBlock Style="{StaticResource GuideHeaderStyle}" Text="Abstrak" FontSize="18" Margin="0,0,0,10"/>
-                            <TextBlock Style="{StaticResource DescriptionTextStyle}" LineHeight="22" TextAlignment="Justify">
-                                Perkembangan wilayah perkotaan di sekitar Jakarta, khususnya Kota Tangerang dan Kota Tangerang Selatan, mengalami pertumbuhan pesat dalam beberapa tahun terakhir. Urbanisasi ini memicu perluasan lahan terbangun yang berdampak pada perubahan tutupan lahan, berkurangnya area hijau, serta meningkatnya tekanan lingkungan. Pemantauan perubahan lahan dengan metode survei konvensional dinilai kurang efisien karena membutuhkan biaya, waktu, dan tenaga yang besar. Oleh karena itu, pemanfaatan citra satelit melalui teknologi penginderaan jauh menjadi alternatif yang lebih efektif untuk memetakan dan memantau dinamika perubahan lahan secara berkala.
-                                <LineBreak/><LineBreak/>
-                                Penelitian ini bertujuan untuk merancang model klasifikasi lahan terbangun berbasis regresi logistik menggunakan citra Sentinel-2. Regresi logistik dipilih karena merupakan metode statistik yang mampu membangun model klasifikasi biner, sehingga sesuai untuk membedakan lahan terbangun dan tidak terbangun. Model ini memanfaatkan informasi spektral dari saluran-saluran Sentinel-2 yang relevan sebagai variabel input, sedangkan label kelas ditentukan menggunakan ENDISI (Enhanced Normalized Difference Impervious Surface Index) dengan nilai ambang tertentu.
-                                <LineBreak/><LineBreak/>
-                                Metode penelitian dilakukan melalui pendekatan supervised learning dengan beberapa tahap utama. Pertama, dilakukan pengumpulan data citra Sentinel-2 Level-2A untuk periode 2019–2024, yang kemudian dipotong sesuai wilayah studi menggunakan shapefile administrasi Kota Tangerang dan Kota Tangerang Selatan. Selanjutnya, nilai saluran spektral diekstraksi, dengan pemisahan saluran yang digunakan untuk pembentukan label dan saluran yang digunakan sebagai variabel independen. Saluran spektral yang dipakai meliputi Blue (B2), Green (B3), Red (B4), Red Edge 1–3 (B5, B6, B7), NIR (B8), SWIR1 (B11), dan SWIR2 (B12). Tahap berikutnya adalah penentuan data ground truth melalui threshold ENDISI, di mana piksel dengan nilai lebih besar dari threshold diklasifikasikan sebagai wilayah terbangun. Model regresi logistik kemudian dilatih secara terpisah untuk setiap tahun dalam periode penelitian, sehingga dapat mengakomodasi variasi spektral antar waktu. Hasil klasifikasi divisualisasikan dalam bentuk peta distribusi lahan terbangun dan tidak terbangun, serta dibandingkan antar tahun untuk menganalisis dinamika spasial.
-                                <LineBreak/><LineBreak/>
-                                Selain klasifikasi, penelitian ini juga mengintegrasikan analisis deret waktu berbasis Long Short-Term Memory (LSTM) untuk memprediksi tren pertumbuhan lahan terbangun di masa mendatang. Model LSTM dilatih menggunakan data luas lahan terbangun hasil klasifikasi per tanggal pengamatan untuk setiap wilayah studi, sehingga mampu mempelajari pola temporal dan memberikan estimasi kuantitatif terhadap perkembangan kawasan terbangun di periode berikutnya.
-                                <LineBreak/><LineBreak/>
-                                Dengan demikian, selain menghasilkan peta klasifikasi tahunan, penelitian ini juga mampu memberikan estimasi perkembangan kawasan terbangun pada masa mendatang. Adapun batasan penelitian mencakup pemilihan citra tanpa pra-pemrosesan awan secara menyeluruh, serta fokus studi yang terbatas pada dua kota di Provinsi Banten. Meskipun demikian, hasil penelitian diharapkan dapat memberikan kontribusi penting dalam pemantauan dinamika urbanisasi, sekaligus mendukung penyusunan kebijakan tata ruang dan pembangunan berkelanjutan. Output yang ditargetkan mencakup model regresi logistik yang mampu mengidentifikasi area terbangun dari citra Sentinel-2, model LSTM untuk prediksi tren pertumbuhan lahan terbangun , tabel klasifikasi dengan nilai prediksi biner (0 dan 1), grafik deret waktu hasil prediksi , serta purwarupa aplikasi sederhana untuk menguji data baru dan menampilkan hasil klasifikasi maupun prediksi.
-                            </TextBlock>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-            </ScrollViewer>
 
-            <!-- Kolom Kanan: Profil Pengembang -->
-            <Border Grid.Column="1" Style="{StaticResource SectionBorderStyle}" Height="Auto" VerticalAlignment="Top">
-                <StackPanel>
-                    <!-- Foto Profil -->
-                    <Ellipse Width="120" Height="120" HorizontalAlignment="Center" Margin="0,0,0,20">
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="pack://application:,,,/Assets/Tentang.jpg" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Top"/>
-                        </Ellipse.Fill>
-                        <Ellipse.Effect>
-                            <DropShadowEffect ShadowDepth="2" BlurRadius="8" Color="#DADADA" Opacity="0.6"/>
-                        </Ellipse.Effect>
-                    </Ellipse>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
 
-                    <!-- Info Teks -->
-                    <TextBlock Text="Arya Wira Kristanto" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#1A202C"/>
-                    <TextBlock Text="535220004" FontSize="14" HorizontalAlignment="Center" Foreground="#718096" Margin="0,2,0,15"/>
+                            <Border Grid.Column="0" Style="{StaticResource IllustrationBoxStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <Grid>
+                                    <Rectangle Width="240" Height="240" HorizontalAlignment="Center">
+                                        <Rectangle.Fill>
+                                            <ImageBrush ImageSource="pack://application:,,,/Assets/Sentinel-2.png" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center"/>
+                                        </Rectangle.Fill>
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect ShadowDepth="2" BlurRadius="8" Color="#DADADA" Opacity="0.6"/>
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+                                </Grid>
+                            </Border>
 
-                    <Separator Background="#E2E8F0" Margin="0,5,0,15"/>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock Text="Sumber Data" Style="{StaticResource GuideHeaderStyle}"/>
+                                <TextBlock Style="{StaticResource ContentTextStyle}">
+                                Aplikasi ini memanfaatkan citra <Bold>Sentinel-2 Level-2A</Bold> yang diunduh dari 
+                                <Hyperlink NavigateUri="https://browser.dataspace.copernicus.eu/" RequestNavigate="Hyperlink_RequestNavigate">
+                                    Copernicus Open Access Hub
+                                </Hyperlink>. Penggunaan citra satelit tersebut dilengkapi dengan <Bold>shapefile batas kecamatan</Bold> untuk pemotongan sesuai wilayah studi (Kota Tangerang &amp; Tangerang Selatan).
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
 
-                    <TextBlock Style="{StaticResource StepHeaderStyle}" Text="EMAIL"/>
-                    <TextBlock Style="{StaticResource ContentTextStyle}" Text="arya.535220004@stu.untar.ac.id" Margin="0,0,0,10"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                    <TextBlock Style="{StaticResource StepHeaderStyle}" Text="FAKULTAS"/>
-                    <TextBlock Style="{StaticResource ContentTextStyle}" Text="Fakultas Teknologi Informasi" Margin="0,0,0,10"/>
+                            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                <TextBlock Text="Latar Belakang" Style="{StaticResource GuideHeaderStyle}"/>
+                                <TextBlock Style="{StaticResource ContentTextStyle}">
+                                Pertumbuhan kawasan terbangun di wilayah penyangga Jabodetabek, termasuk Kota Tangerang dan Kota Tangerang Selatan, menunjukkan <Bold>peningkatan yang sangat cepat</Bold> dalam beberapa tahun terakhir. Kondisi ini menimbulkan tantangan serius bagi pengelolaan tata ruang dan keberlanjutan lingkungan. Peningkatan lahan terbangun tanpa kendali berpotensi mempercepat <Bold>berkurangnya ruang terbuka hijau, menurunkan daya resap air, serta meningkatkan suhu permukaan wilayah</Bold>. Pemantauan perubahan tutupan lahan menjadi langkah penting untuk mengantisipasi dampak tersebut dan mendukung penyusunan kebijakan pembangunan yang lebih berkelanjutan.
+                                </TextBlock>
+                            </StackPanel>
 
-                    <TextBlock Style="{StaticResource StepHeaderStyle}" Text="UNIVERSITAS"/>
-                    <TextBlock Style="{StaticResource ContentTextStyle}" Text="Universitas Tarumanagara" Margin="0,0,0,0"/>
-                </StackPanel>
+                            <Border Grid.Column="1" Style="{StaticResource IllustrationBoxStyle}" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Grid>
+                                    <Rectangle Width="240" Height="240" HorizontalAlignment="Center">
+                                        <Rectangle.Fill>
+                                            <ImageBrush ImageSource="pack://application:,,,/Assets/Urbanization.png" Stretch="Uniform" AlignmentX="Center" AlignmentY="Center"/>
+                                        </Rectangle.Fill>
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect ShadowDepth="2" BlurRadius="8" Color="#DADADA" Opacity="0.6"/>
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                        <TextBlock Text="Fitur Utama" Style="{StaticResource GuideHeaderStyle}" HorizontalAlignment="Center" Margin="0,80,0,0"/>
+                        <WrapPanel Margin="0,6,0,12" HorizontalAlignment="Center" ItemWidth="280">
+                            <Border Style="{StaticResource FeatureCardStyle}">
+                                <StackPanel>
+                                    <Border Style="{StaticResource FeatureImageBox}">
+                                        <Rectangle Width="200" Height="200" HorizontalAlignment="Center">
+                                            <Rectangle.Fill>
+                                                <ImageBrush ImageSource="pack://application:,,,/Assets/Feature1.png" Stretch="Uniform" AlignmentX="Center" AlignmentY="Center"/>
+                                            </Rectangle.Fill>
+                                            <Rectangle.Effect>
+                                                <DropShadowEffect ShadowDepth="2" BlurRadius="8" Color="#DADADA" Opacity="0.6"/>
+                                            </Rectangle.Effect>
+                                        </Rectangle>
+                                    </Border>
+
+                                    <TextBlock Text="Pemotongan Citra" Style="{StaticResource FeatureTitleText}"/>
+                                    <TextBlock Style="{StaticResource FeatureDescText}">
+                                        Memotong citra satelit sesuai batas administrasi kecamatan
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Style="{StaticResource FeatureCardStyle}">
+                                <StackPanel>
+                                    <Border Style="{StaticResource FeatureImageBox}">
+                                        <Rectangle Width="200" Height="200" HorizontalAlignment="Center">
+                                            <Rectangle.Fill>
+                                                <ImageBrush ImageSource="pack://application:,,,/Assets/Feature2.png" Stretch="Uniform" AlignmentX="Center" AlignmentY="Center"/>
+                                            </Rectangle.Fill>
+                                            <Rectangle.Effect>
+                                                <DropShadowEffect ShadowDepth="2" BlurRadius="8" Color="#DADADA" Opacity="0.6"/>
+                                            </Rectangle.Effect>
+                                        </Rectangle>
+                                    </Border>
+
+                                    <TextBlock Text="Klasifikasi Citra Satelit" Style="{StaticResource FeatureTitleText}"/>
+                                    <TextBlock Style="{StaticResource FeatureDescText}">
+                                        Klasifikasi lahan terbangun dan non-terbangun yang divisualisasikan dalam bentuk peta dengan fitur overlay lengkap dengan statistik luas area
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Style="{StaticResource FeatureCardStyle}">
+                                <StackPanel>
+                                    <Border Style="{StaticResource FeatureImageBox}">
+                                        <Rectangle Width="200" Height="200" HorizontalAlignment="Center">
+                                            <Rectangle.Fill>
+                                                <ImageBrush ImageSource="pack://application:,,,/Assets/Feature3.png" Stretch="Uniform" AlignmentX="Center" AlignmentY="Center"/>
+                                            </Rectangle.Fill>
+                                            <Rectangle.Effect>
+                                                <DropShadowEffect ShadowDepth="2" BlurRadius="8" Color="#DADADA" Opacity="0.6"/>
+                                            </Rectangle.Effect>
+                                        </Rectangle>
+                                    </Border>
+
+                                    <TextBlock Text="Estimasi Luas Lahan Terbangun" Style="{StaticResource FeatureTitleText}"/>
+                                    <TextBlock Style="{StaticResource FeatureDescText}">
+                                        Prediksi luas lahan terbangun di masa mendatang
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </WrapPanel>
+
+                        <TextBlock Text="Pengembang" Style="{StaticResource GuideHeaderStyle}" HorizontalAlignment="Center" Margin="0,40,0,0"/>
+                        <Grid Margin="0,20,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="1" Style="{StaticResource PhotoStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid>
+                                    <Rectangle Width="180" Height="180" HorizontalAlignment="Center">
+                                        <Rectangle.Fill>
+                                            <ImageBrush ImageSource="pack://application:,,,/Assets/Tentang.jpg" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Top"/>
+                                        </Rectangle.Fill>
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect ShadowDepth="2" BlurRadius="8" Color="#DADADA" Opacity="0.6"/>
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+                                </Grid>
+                            </Border>
+                            
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                <TextBlock Text="Arya Wira Kristanto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Foreground="Black" Padding="0,10"/>
+
+                                <TextBlock Style="{StaticResource StepHeaderTentangStyle}" Text="EMAIL"/>
+                                <TextBlock Style="{StaticResource ContentTextStyle}" Text="arya.535220004@stu.untar.ac.id" Margin="0,0,0,10"/>
+
+                                <TextBlock Style="{StaticResource StepHeaderTentangStyle}" Text="FAKULTAS"/>
+                                <TextBlock Style="{StaticResource ContentTextStyle}" Text="Fakultas Teknologi Informasi" Margin="0,0,0,10"/>
+
+                                <TextBlock Style="{StaticResource StepHeaderTentangStyle}" Text="UNIVERSITAS"/>
+                                <TextBlock Style="{StaticResource ContentTextStyle}" Text="Universitas Tarumanagara" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Grid>
+
+                    </StackPanel>
+                </ScrollViewer>
             </Border>
         </Grid>
     </Grid>
