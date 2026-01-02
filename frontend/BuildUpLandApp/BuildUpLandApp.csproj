@@ -11,7 +11,15 @@
 
   <ItemGroup>
     <None Remove="Assets\BuildUpLand.ico" />
+    <None Remove="Assets\Feature1.png" />
+    <None Remove="Assets\Feature2.png" />
+    <None Remove="Assets\Feature3.png" />
+    <None Remove="Assets\Sentinel-2.png" />
     <None Remove="Assets\Tentang.jpg" />
+    <None Remove="Assets\TerraBuilt.ico" />
+    <None Remove="Assets\TerraBuilt.png" />
+    <None Remove="Assets\urbanbackground.jpg" />
+    <None Remove="Assets\Urbanization.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,8 +32,31 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\BuildUpLand.ico" />
+    <Resource Include="Assets\Feature1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Feature2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Feature3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Sentinel-2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Tentang.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\TerraBuilt.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\TerraBuilt.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\urbanbackground.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Urbanization.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

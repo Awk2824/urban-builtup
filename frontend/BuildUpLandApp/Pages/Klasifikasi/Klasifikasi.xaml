@@ -7,88 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1200"
       Title="Klasifikasi Lahan Terbangun"
-      Background="#F0F4F8">
-
-    <Page.Resources>
-        <!-- Style Tombol Umum -->
-        <Style x:Key="BaseButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#4299E1"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="10,8"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Height" Value="35"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6">
-                            <Border.Effect>
-                                <DropShadowEffect ShadowDepth="1" BlurRadius="4" Color="#A0AEC0" Opacity="0.3"/>
-                            </Border.Effect>
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#2B6CB0"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#2C5282"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="border" Property="Background" Value="#A0AEC0"/>
-                                <Setter Property="Foreground" Value="#E2E8F0"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!-- Style Tombol Browse (...) -->
-        <Style x:Key="BrowseButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
-            <Setter Property="Width" Value="40"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="Content" Value="..."/>
-            <Setter Property="Margin" Value="5,0,0,0"/>
-        </Style>
-        <!-- Style TextBlock Input Path -->
-        <Style x:Key="InputPathTextBlockStyle" TargetType="TextBlock">
-            <Setter Property="Background" Value="#E2E8F0"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Padding" Value="8,6"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="#4A5568"/>
-        </Style>
-        <!-- Style ComboBox -->
-        <Style x:Key="BaseComboBoxStyle" TargetType="ComboBox">
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-        </Style>
-        <!-- Style untuk Border Section -->
-        <Style x:Key="SectionBorderStyle" TargetType="Border">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#E2E8F0"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="20"/>
-            <Setter Property="Margin" Value="0,0,0,20"/>
-            <Setter Property="CornerRadius" Value="8"/>
-        </Style>
-        <!-- Style untuk Judul Section -->
-        <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#1A202C"/>
-            <Setter Property="Margin" Value="0,0,0,15"/>
-        </Style>
-        <!-- Style untuk Teks Deskripsi -->
-        <Style x:Key="DescriptionTextStyle" TargetType="TextBlock">
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Foreground" Value="#4A5568"/>
-            <Setter Property="Margin" Value="0,0,0,10"/>
-        </Style>
-    </Page.Resources>
+      Background="Transparent">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -98,36 +17,63 @@
 
         <!-- Tombol Kembali -->
         <Button Content="←" Grid.Row="0"
-                BorderThickness="0" Background="Transparent" Foreground="#4A5568"
+                BorderThickness="0" Background="White" Foreground="#4A5568"
                 Width="40" Height="30" FontSize="20" FontWeight="Bold"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"
                 Click="Back_Click" ToolTip="Kembali"/>
 
         <!-- Judul Halaman -->
-        <TextBlock Grid.Row="0" Text="Klasifikasi Lahan Terbangun"
+        <Border Grid.Row="0" Style="{StaticResource SectionHeaderCardStyle}">
+            <TextBlock Text="Klasifikasi Lahan Terbangun"
                    FontSize="24" FontWeight="Bold" Foreground="#1A202C"
-                   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,10"/>
+                   HorizontalAlignment="Center"/>
+        </Border>
 
-        <!-- Konten Utama dengan Tabs -->
         <TabControl Grid.Row="1" Margin="20" Background="White" BorderThickness="0">
             <TabControl.Resources>
+                <SolidColorBrush x:Key="TabStripBackground" Color="White"/>
+                <SolidColorBrush x:Key="TabInactiveBackground" Color="#A0AEC0"/>
+                <SolidColorBrush x:Key="TabActiveBackground" Color="White"/>
+                <SolidColorBrush x:Key="TabActiveBorder" Color="#E6EEF9"/>
+                <SolidColorBrush x:Key="TabHoverBackground" Color="#374151"/>
+                <SolidColorBrush x:Key="TabActiveForeground" Color="#1F3A63"/>
+                <SolidColorBrush x:Key="TabInactiveForeground" Color="#A0AEC0"/>
+                
                 <Style TargetType="TabItem">
-                    <Setter Property="Padding" Value="10,5"/>
+                    <Setter Property="Padding" Value="15,5"/>
                     <Setter Property="FontWeight" Value="SemiBold"/>
-                    <Setter Property="Foreground" Value="#4A5568"/>
+                    <Setter Property="Foreground" Value="{StaticResource TabInactiveForeground}"/>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="TabItem">
-                                <Border x:Name="Border" BorderThickness="0,0,0,2" BorderBrush="Transparent" Padding="{TemplateBinding Padding}" Margin="0,0,5,0">
-                                    <ContentPresenter ContentSource="Header"/>
-                                </Border>
+                                <Grid>
+                                    <Border x:Name="InactiveBg"
+                                            Background="{StaticResource TabStripBackground}"
+                                            CornerRadius="6,6,0,0"
+                                            Padding="{TemplateBinding Padding}"
+                                            SnapsToDevicePixels="True"
+                                            Margin="2,0,0,0">
+                                        <ContentPresenter x:Name="HeaderContent" ContentSource="Header"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <Border x:Name="SelectedBg"
+                                            Background="{StaticResource TabActiveBackground}"
+                                            CornerRadius="8,8,0,0"
+                                            Margin="0,-8,0,0"
+                                            Padding="{TemplateBinding Padding}"
+                                            Visibility="Collapsed"
+                                            SnapsToDevicePixels="True">
+                                        <ContentPresenter ContentSource="Header" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </Grid>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="Border" Property="BorderBrush" Value="#4299E1"/>
+                                        <Setter TargetName="SelectedBg" Property="BorderBrush" Value="#4299E1"/>
                                         <Setter Property="Foreground" Value="#2B6CB0"/>
                                     </Trigger>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="Border" Property="BorderBrush" Value="#A0AEC0"/>
+                                        <Setter TargetName="InactiveBg" Property="BorderBrush" Value="#A0AEC0"/>
                                         <Setter Property="Foreground" Value="#2D3748"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
@@ -144,12 +90,12 @@
             </TabControl.Resources>
 
             <!-- TAB 1: PELATIHAN MODEL -->
-            <TabItem Header="Pelatihan Model">
+            <TabItem Header="Pelatihan Model" FontSize="14">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="30">
                         <Border x:Name="RegresiLogistikPanel" Background="#F7FAFC" BorderBrush="#E2E8F0" BorderThickness="1" Padding="20" Margin="0" CornerRadius="8" Visibility="Visible">
                             <StackPanel>
-                                <TextBlock Text="Pelatihan Regresi Logistik" FontSize="16" FontWeight="Bold" Margin="0,0,0,15"/>
+                                <TextBlock Text="Pelatihan Regresi Logistik" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
                                 <TextBlock Text="Langkah 1: Siapkan Data (Potong Citra)" FontWeight="SemiBold" Margin="0,0,0,10"/>
                                 <TextBlock TextWrapping="Wrap" Margin="0,0,0,10" Foreground="#4A5568">
                                      Pilih folder citra (berisi file .jp2) dan file shapefile (.shp)
@@ -172,7 +118,6 @@
                                 </TextBlock>
                                 <Button x:Name="LatihModelLogRegButton" Style="{StaticResource BaseButtonStyle}" Content="Mulai Pelatihan Regresi Logistik" Width="250" HorizontalAlignment="Left" Click="LatihModelLogReg_Click"/>
 
-                                <!-- Panel Hasil Evaluasi LogReg -->
                                 <Border Background="White" BorderBrush="#E2E8F0" BorderThickness="1" Padding="15" Margin="0,20,0,0" CornerRadius="6">
                                     <StackPanel>
                                         <TextBlock Text="Hasil Evaluasi Terakhir" FontWeight="SemiBold" FontSize="14" Margin="0,0,0,10"/>
@@ -189,14 +134,13 @@
             </TabItem>
 
             <!-- TAB 2: KLASIFIKASI CITRA -->
-            <TabItem Header="Klasifikasi Citra">
+            <TabItem Header="Klasifikasi Citra" FontSize="14">
                 <Grid Margin="30">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- Kolom Input -->
                     <StackPanel Grid.Column="0" Margin="0,0,30,0" VerticalAlignment="Top">
                         <TextBlock Text="Pilih Data untuk Klasifikasi" FontSize="16" FontWeight="Bold" Margin="0,0,0,15"/>
 
@@ -229,7 +173,6 @@
                         <Button x:Name="KlasifikasiButton" Style="{StaticResource BaseButtonStyle}" Content="Mulai Klasifikasi" Width="200" HorizontalAlignment="Left" Click="Klasifikasi_Click"/>
                     </StackPanel>
 
-                    <!-- Kolom Hasil -->
                     <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <TextBlock Text="Hasil Klasifikasi" FontSize="16" FontWeight="Bold" Margin="0,0,0,15"/>

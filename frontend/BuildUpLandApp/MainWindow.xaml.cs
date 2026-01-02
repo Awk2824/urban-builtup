@@ -20,7 +20,7 @@ namespace BuildUpLandApp
         {
             InitializeComponent();
             MainFrame.Navigate(new Pages.Beranda.Beranda());
-            Uri iconUri = new Uri("pack://application:,,,/Assets/BuildUpLand.ico", UriKind.RelativeOrAbsolute);
+            Uri iconUri = new Uri("pack://application:,,,/Assets/TerraBuilt.ico", UriKind.RelativeOrAbsolute);
             this.Icon = BitmapFrame.Create(iconUri);
         }
 

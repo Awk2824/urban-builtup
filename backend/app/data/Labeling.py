@@ -41,44 +41,12 @@ def labeling(tabular: np.ndarray, bands: list[str], use_otsu: bool = True, thres
     alpha = (2.0 * np.nanmean(blue[valid_mask])) / (np.nanmean(swir1[valid_mask]/(swir2[valid_mask]+Constants.EPSILON)) + np.nanmean(mndwi[valid_mask]**2) + Constants.EPSILON)
     endisi = (blue - alpha * ((swir1 / (swir2+Constants.EPSILON)) + mndwi**2)) / (blue + alpha * ((swir1 / (swir2+Constants.EPSILON)) + mndwi**2) + Constants.EPSILON)
 
-    # # Plot ENDISI 2D sebelum flattening
-    # plt.figure(figsize=(10,6))
-    # plt.hist(endisi[valid_mask], bins=100, color='skyblue', edgecolor='black')
-    # plt.title("Histogram ENDISI")
-    # plt.xlabel("ENDISI")
-    # plt.ylabel("Jumlah piksel")
-    # plt.show()
-
     if use_otsu:
         finite_endisi = endisi[valid_mask]
         if len(finite_endisi) == 0:
             raise RuntimeError("Tidak ada piksel valid untuk Otsu thresholding")
         threshold = threshold_otsu(finite_endisi)
-        # print(f"Threshold ENDISI menggunakan Otsu: {threshold:.4f}")
-
-    # # Set invalid ke NaN
-    # endisi[~valid_mask] = np.nan
-    
-    # # Buat label '1' jika ENDISI > threshold
-    # labels = np.zeros(endisi.shape[0], dtype=np.uint8)
-    # labels[np.isfinite(endisi) & (endisi > threshold)] = 1
-    # labels = labels.astype(int)
-
-    # unique, counts = np.unique(labels, return_counts=True)
-    # print(f"Distribusi label ENDISI: {dict(zip(unique, counts))}")
-
-    # # Masukkan label ke tabular
-    # label_col = labels.reshape(-1, 1)
-    # new_tabular = np.hstack([tabular, label_col])
-    # new_bands = bands + ["label_endisi"]
-
-    # print("\n=== Contoh data tabular dengan label ENDISI ===")
-    # print("Kolom:", " ".join(new_bands))
-    # np.set_printoptions(linewidth=200, precision=4, suppress=True)
-    # print(new_tabular[:5])
-    # print()
-
-
+        
     # Buat label (1 jika ENDISI > threshold)
     labels = np.zeros_like(endisi, dtype=int)
     labels[valid_mask & (endisi > threshold)] = 1
@@ -86,9 +54,6 @@ def labeling(tabular: np.ndarray, bands: list[str], use_otsu: bool = True, thres
     # Masukkan label ke tabular
     new_tabular = np.hstack([tabular, labels.reshape(-1,1)])
     new_bands = bands + ["label_endisi"]
-
-    # print("=== Contoh 5 data tabular dengan label ENDISI ===")
-    # print(np.round(new_tabular[:5], 4))
 
     return new_tabular, new_bands
 #endregion

@@ -42,6 +42,7 @@ namespace BuildUpLandApp.Pages.TimeSeries
             KecamatanOutputText.Text = "-";
             TahunPrediksiText.Text = "-";
             LuasTerbangunOutputText.Text = "-";
+            PersentaseOutputText.Text = "-";
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -327,6 +328,7 @@ namespace BuildUpLandApp.Pages.TimeSeries
                             KecamatanOutputText.Text = selectedKecamatanDisplay;
                             TahunPrediksiText.Text = targetYear.ToString();
                             LuasTerbangunOutputText.Text = $"{predictedValue:F3}";
+                            PersentaseOutputText.Text = $"{result.PredictedPercentage:F2}";
 
                             if (!string.IsNullOrEmpty(result.PredictionGraphPath) && File.Exists(result.PredictionGraphPath))
                             {
@@ -640,5 +642,8 @@ namespace BuildUpLandApp.Pages.TimeSeries
     {
         public Dictionary<int, double> Predictions { get; set; }
         public string PredictionGraphPath { get; set; }
+        public double PredictedValue { get; set; }
+        public double PredictedPercentage { get; set; }
+        public double TotalAreaKm2 { get; set; }
     }
 }

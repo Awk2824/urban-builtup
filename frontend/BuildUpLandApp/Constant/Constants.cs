@@ -14,7 +14,7 @@ namespace BuildUpLandApp.Constant
         #endregion
 
         #region Backend
-        public const string PYTHON = "python";
+        public const string PYTHON = "py";
         public const string BACKEND_ROOT_FOLDER = "backend";
         public const string PYTHON_PREPROCESSING = "app/data/Preprocessing.py";
         public const string PYTHON_TRAINING_LOGREG = "app/model/LogisticRegression/Training.py";

@@ -23,13 +23,27 @@ namespace BuildUpLandApp.Pages.Beranda
         public Beranda()
         {
             InitializeComponent();
+            this.Loaded += Page_Loaded;
+            this.Unloaded += Page_Unloaded;
         }
 
-        //private void Pelatihan_Click(object sender, RoutedEventArgs e)
-        //{
-        //    NavigationService.Navigate(new Pages.Pelatihan.Pelatihan());
-        //}
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (Mouse.Captured != null)
+                Mouse.Capture(null);
 
+            Keyboard.ClearFocus();
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (Mouse.Captured != null)
+                Mouse.Capture(null);
+
+            Keyboard.ClearFocus();
+        }
+
+        #region Navigation
         private void Klasifikasi_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Pages.Klasifikasi.Klasifikasi());
@@ -49,5 +63,6 @@ namespace BuildUpLandApp.Pages.Beranda
         {
             NavigationService.Navigate(new Pages.Tentang.Tentang());
         }
+        #endregion
     }
 }

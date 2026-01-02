@@ -41,12 +41,29 @@ namespace BuildUpLandApp.Pages.Panduan
 
         private void PanduanKlasifikasi_Click(object sender, RoutedEventArgs e)
         {
-            GuideContentControl.Content = FindResource("PanduanKlasifikasi") as StackPanel;
+            var rb = sender as RadioButton;
+            if (rb != null && rb.IsChecked == true)
+                GuideContentControl.Content = FindResource("PanduanKlasifikasi") as StackPanel;
         }
 
         private void PanduanTimeSeries_Click(object sender, RoutedEventArgs e)
         {
-            GuideContentControl.Content = FindResource("PanduanPrediksi") as StackPanel;
+            var rb = sender as RadioButton;
+            if (rb != null && rb.IsChecked == true)
+                GuideContentControl.Content = FindResource("PanduanPrediksi") as StackPanel;
+        }
+
+        private void NavButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var rb = sender as RadioButton;
+            if (rb == null) return;
+
+            if (rb.IsChecked == true)
+            {
+                e.Handled = true;
+                rb.IsChecked = false;
+                GuideContentControl.Content = FindResource("PanduanSelamatDatang") as StackPanel;
+            }
         }
     }
 }

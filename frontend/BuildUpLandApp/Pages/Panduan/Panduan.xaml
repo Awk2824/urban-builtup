@@ -7,84 +7,37 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       Title="Panduan"
-      Background="White">
+      Background="Transparent">
 
     <Page.Resources>
-        <!-- Style untuk Teks Deskripsi -->
-        <Style x:Key="DescriptionTextStyle" TargetType="TextBlock">
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Foreground" Value="#4A5568"/>
-            <Setter Property="Margin" Value="0,0,0,10"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-        <!-- Style untuk Judul Panduan -->
-        <Style x:Key="GuideHeaderStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="22"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#1A202C"/>
-            <Setter Property="Margin" Value="0,0,0,15"/>
-        </Style>
-        <!-- Style untuk Sub-Judul Langkah -->
-        <Style x:Key="StepHeaderStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Foreground" Value="#2B6CB0"/>
-            <Setter Property="Margin" Value="0,15,0,5"/>
-        </Style>
-        <!-- Style untuk Tombol Navigasi Panduan -->
-        <Style x:Key="NavButtonStyle" TargetType="RadioButton">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#2D3748"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="12,10"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="RadioButton">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#E2E8F0"/>
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#4299E1"/>
-                                <Setter Property="Foreground" Value="White"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <!-- Konten Panduan (didefinisikan sebagai Resource) -->
-        <StackPanel x:Key="PanduanSelamatDatang" Margin="20">
+        <!-- Konten Panduan -->
+        <StackPanel x:Key="PanduanSelamatDatang" Margin="20,0,20,20">
             <TextBlock Style="{StaticResource GuideHeaderStyle}">Panduan Penggunaan Aplikasi</TextBlock>
-            <TextBlock Style="{StaticResource DescriptionTextStyle}" FontSize="15">
+            <TextBlock Style="{StaticResource DescriptionTextStyle}" FontSize="16">
                 Aplikasi ini memiliki dua fungsi utama:
             </TextBlock>
             <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
-                <TextBlock Text="1." FontWeight="Bold" Margin="0,0,5,0"/>
-                <TextBlock Text="Mengklasifikasikan lahan terbangun dari citra satelit."/>
+                <TextBlock Margin="0,0,5,0" FontSize="14">
+                    <Bold>1.</Bold> Mengklasifikasikan lahan terbangun dari citra satelit.
+                </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
-                <TextBlock Text="2." FontWeight="Bold" Margin="0,0,5,0"/>
-                <TextBlock Text="Memprediksi luas lahan terbangun di masa depan."/>
+                <TextBlock Margin="0,0,5,0" FontSize="14">
+                    <Bold>2.</Bold> Memprediksi luas lahan terbangun di masa depan.
+                </TextBlock>
             </StackPanel>
             <TextBlock Style="{StaticResource DescriptionTextStyle}" Margin="0,20,0,0">
                 Silakan pilih topik panduan di sebelah kiri untuk melihat petunjuk langkah demi langkah.
             </TextBlock>
         </StackPanel>
 
-        <StackPanel x:Key="PanduanKlasifikasi" Margin="20">
+        <StackPanel x:Key="PanduanKlasifikasi" Margin="20,0,20,20">
             <TextBlock Style="{StaticResource GuideHeaderStyle}">Panduan Klasifikasi</TextBlock>
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
                  Halaman ini memiliki alur kerja 3 langkah untuk mengklasifikasikan lahan terbangun menggunakan model Regresi Logistik.
             </TextBlock>
 
-            <TextBlock Style="{StaticResource StepHeaderStyle}">Langkah 1: Persiapan Data (Potong Citra)</TextBlock>
+            <TextBlock Style="{StaticResource StepHeaderPanduanStyle}">Langkah 1: Persiapan Data (Potong Citra)</TextBlock>
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
                  Tujuan dari langkah ini adalah memotong citra satelit yang besar menggunakan batas wilayah (shapefile) dan menyimpannya ke database.
                  <LineBreak/>
@@ -99,7 +52,7 @@
                  4. Aplikasi akan secara otomatis memproses semua citra yang ada dalam folder tanggal di "Dataset" dengan shapefile di "Shapefile". Proses ini mungkin memakan waktu lama.
             </TextBlock>
 
-            <TextBlock Style="{StaticResource StepHeaderStyle}">Langkah 2: Pelatihan Model Regresi Logistik</TextBlock>
+            <TextBlock Style="{StaticResource StepHeaderPanduanStyle}">Langkah 2: Pelatihan Model Regresi Logistik</TextBlock>
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
                 Setelah data disiapkan, model dilatih untuk belajar membedakan lahan terbangun dan non-terbangun.
                  <LineBreak/>
@@ -110,7 +63,7 @@
                  3. Setelah selesai, hasil evaluasi (Akurasi, Presisi, dll.) akan muncul di kotak di bawahnya.
             </TextBlock>
 
-            <TextBlock Style="{StaticResource StepHeaderStyle}">Langkah 3: Klasifikasi Citra</TextBlock>
+            <TextBlock Style="{StaticResource StepHeaderPanduanStyle}">Langkah 3: Klasifikasi Citra</TextBlock>
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
                 Setelah model dilatih, model dapat digunakan untuk mengklasifikasi citra baru atau citra yang sudah ada.
                  <LineBreak/>
@@ -131,15 +84,14 @@
             </TextBlock>
         </StackPanel>
 
-        <StackPanel x:Key="PanduanPrediksi" Margin="20">
+        <StackPanel x:Key="PanduanPrediksi" Margin="20,0,20,20">
             <TextBlock Style="{StaticResource GuideHeaderStyle}">Panduan Prediksi (LSTM)</TextBlock>
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
                  Halaman ini memiliki alur kerja 2 langkah untuk memprediksi luas lahan terbangun di masa depan menggunakan model LSTM (Long Short-Term Memory).
             </TextBlock>
 
-            <TextBlock Style="{StaticResource StepHeaderStyle}">Langkah 1: Pelatihan Model LSTM</TextBlock>
+            <TextBlock Style="{StaticResource StepHeaderPanduanStyle}">Langkah 1: Pelatihan Model LSTM</TextBlock>
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                 <LineBreak/>
                  1. Sesuaikan "Hyperparameter" seperti "Jumlah Epoch" atau "Learning Rate" atau biarkan nilai default.
                  <LineBreak/>
                  2. Klik tombol "Mulai Pelatihan LSTM".
@@ -149,7 +101,7 @@
                  4. Setelah selesai, hasil evaluasi (MAE, MSE, RMSE) dan grafik R-Squared akan ditampilkan.
             </TextBlock>
 
-            <TextBlock Style="{StaticResource StepHeaderStyle}">Langkah 2: Prediksi Luas Lahan</TextBlock>
+            <TextBlock Style="{StaticResource StepHeaderPanduanStyle}">Langkah 2: Prediksi Luas Lahan</TextBlock>
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
                 Gunakan model yang sudah dilatih untuk memprediksi masa depan.
                  <LineBreak/>
@@ -173,43 +125,46 @@
 
         <!-- Tombol Kembali -->
         <Button Content="←" Grid.Row="0"
-                BorderThickness="0" Background="Transparent" Foreground="#4A5568"
+                BorderThickness="0" Background="White" Foreground="#4A5568"
                 Width="40" Height="30" FontSize="20" FontWeight="Bold"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"
                 Click="Back_Click" ToolTip="Kembali ke Beranda"/>
 
         <!-- Judul Halaman -->
-        <TextBlock Grid.Row="0" Text="Panduan Aplikasi"
+        <Border Grid.Row="0" Style="{StaticResource SectionHeaderCardStyleInfo}">
+            <TextBlock Grid.Row="0" Text="Panduan Aplikasi"
                    FontSize="24" FontWeight="Bold" Foreground="#1A202C"
-                   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,20"/>
+                   HorizontalAlignment="Center"/>
+        </Border>
 
         <Grid Grid.Row="1" Margin="10,0,10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
-                <!-- Kolom Navigasi -->
                 <ColumnDefinition Width="*"/>
-                <!-- Kolom Konten -->
             </Grid.ColumnDefinitions>
 
-            <!-- Panel Navigasi Kiri -->
-            <StackPanel Grid.Column="0" Margin="0,0,20,0">
-                <TextBlock Text="TOPIK PANDUAN" FontWeight="SemiBold" FontSize="12" Foreground="#718096" Margin="10,0,0,5"/>
-                <RadioButton x:Name="KlasifikasiNavButton" Content="Klasifikasi (Regresi Logistik)" 
+            <Border Grid.Column="0" Background="White"  Margin="0,0,20,0" Padding="5" CornerRadius="8">
+                <StackPanel>
+                    <TextBlock Text="TOPIK PANDUAN" FontWeight="SemiBold" FontSize="14" Foreground="#718096" Margin="10,10,0,5"/>
+                    <RadioButton x:Name="KlasifikasiNavButton" Content="Klasifikasi (Regresi Logistik)" 
+                             FontSize="14"
                              Style="{StaticResource NavButtonStyle}" 
                              GroupName="PanduanNav"
-                             Checked="PanduanKlasifikasi_Click"/>
-                <RadioButton x:Name="TimeSeriesNavButton" Content="Prediksi (LSTM)" 
+                             Checked="PanduanKlasifikasi_Click"
+                             PreviewMouseLeftButtonDown="NavButton_PreviewMouseLeftButtonDown"/>
+                    <RadioButton x:Name="TimeSeriesNavButton" Content="Prediksi (LSTM)" 
+                             FontSize="14"
                              Style="{StaticResource NavButtonStyle}" 
                              GroupName="PanduanNav"
-                             Checked="PanduanTimeSeries_Click"/>
-            </StackPanel>
+                             Checked="PanduanTimeSeries_Click"
+                             PreviewMouseLeftButtonDown="NavButton_PreviewMouseLeftButtonDown"/>
+                </StackPanel>
+            </Border>
 
-            <!-- Konten Panduan Kanan -->
             <Border Grid.Column="1" Background="White" CornerRadius="8">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="1" BlurRadius="10" Color="#E2E8F0" Opacity="0.5"/>
                 </Border.Effect>
-                <!-- Konten akan dimuat di sini -->
                 <ContentControl x:Name="GuideContentControl"/>
             </Border>
         </Grid>
