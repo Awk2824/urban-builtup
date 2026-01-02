@@ -221,17 +221,22 @@
                                 <StackPanel>
                                     <TextBlock Text="Prediksi Luas Lahan Terbangun" FontWeight="SemiBold" FontSize="14" Margin="0,0,0,10"/>
                                     <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
-                                        <Label Content="Kecamatan&#x9;:" Width="100"/>
+                                        <Label Content="Kecamatan&#x9;:" Width="120"/>
                                         <TextBlock x:Name="KecamatanOutputText" Text="-" FontWeight="SemiBold" Margin="0,5,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
-                                        <Label Content="Tahun Prediksi&#x9;:" Width="100"/>
+                                        <Label Content="Tahun Prediksi&#x9;:" Width="120"/>
                                         <TextBlock x:Name="TahunPrediksiText" Text="-" FontWeight="SemiBold" Margin="0,5,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0,5,0,2">
-                                        <Label Content="Estimasi Luas&#x9;:" Width="100"/>
+                                        <Label Content="Estimasi Luas&#x9;:" Width="120"/>
                                         <TextBlock x:Name="LuasTerbangunOutputText" Text="-" FontWeight="Bold" FontSize="14" Foreground="#2B6CB0" Margin="0,3,0,0"/>
                                         <TextBlock Text=" km²" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,5,0,2">
+                                        <Label Content="Persentase&#x9;:" Width="120"/>
+                                        <TextBlock x:Name="PersentaseOutputText" Text="-" FontWeight="Bold" FontSize="14" Foreground="#2B6CB0" Margin="0,3,0,0"/>
+                                        <TextBlock Text=" %" Margin="5,0,0,0" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>

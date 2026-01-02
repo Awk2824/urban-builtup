@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -7,8 +8,10 @@ import json
 import tempfile
 from datetime import datetime
 
+import rasterio
+
 from app.config import Constants
-from app.data.DatabaseManager import load_model_from_db, get_latest_sequence_for_wilayah
+from app.data.DatabaseManager import load_model_from_db, get_latest_sequence_for_wilayah, get_all_training_paths
 
 
 def generate_prediction_graph(history_dict, prediction_dict, output_path, history_dates, target_year):
@@ -46,6 +49,40 @@ def generate_prediction_graph(history_dict, prediction_dict, output_path, histor
         print(f"Gagal membuat grafik prediksi: {e}", file=sys.stderr)
         traceback.print_exc(file=sys.stderr)
         return None
+
+
+def calculate_total_area_kecamatan(raster_path):
+    if not raster_path or not os.path.exists(raster_path):
+        raise FileNotFoundError(f"Raster tidak ditemukan: {raster_path}")
+
+    with rasterio.open(raster_path) as src:
+        data = src.read(1)
+        nodata = src.nodata
+
+        valid_mask = np.ones(data.shape, dtype=bool)
+        if nodata is not None:
+            valid_mask &= data != nodata
+        valid_mask &= data != 0
+        
+        pixel_count = np.sum(valid_mask)
+        pixel_width, pixel_height = src.res
+        pixel_area_m2 = abs(pixel_width * pixel_height)
+
+        total_area_km2 = (pixel_count * pixel_area_m2) / 1_000_000
+        return total_area_km2
+
+
+def get_reference_raster_kecamatan(id_wilayah):
+    infos = get_all_training_paths(include_metadata=True)
+    for info in infos:
+        if info["id_wilayah"] == id_wilayah:
+            for key in ["b4_path", "b3_path", "b2_path"]:
+                raster_path = info.get(key)
+                if raster_path and os.path.exists(raster_path):
+                    return raster_path
+
+    raise RuntimeError(f"Tidak ditemukan raster referensi untuk wilayah ID {id_wilayah}")
+
 
 
 
@@ -120,18 +157,29 @@ if __name__ == "__main__":
 
         print("\n--- Prediksi Selesai ---")
 
+        print("\nMenghitung total luas kecamatan...")
+        ref_raster_path = get_reference_raster_kecamatan(id_wilayah)
+        total_area_km2 = calculate_total_area_kecamatan(ref_raster_path)
+        print(f"Total luas kecamatan: {total_area_km2:.3f} km²")
+
         print("\nMembuat grafik prediksi...")
         pred_graph_temp_path = tempfile.NamedTemporaryFile(suffix=".png", delete=False).name
         prediction_graph_path = generate_prediction_graph(history_for_graph, predictions, pred_graph_temp_path, history_dates, target_year)
 
         predicted_value_for_target_year = list(predictions.values())[-1] if predictions else None
+        
+        predicted_percentage = None
+        if predicted_value_for_target_year is not None and total_area_km2 > 0:
+            predicted_percentage = (predicted_value_for_target_year / total_area_km2) * 100
 
         results = {
             "Predictions": predictions,
             "History": list(zip(history_dates, [sum(history_for_graph[sub][i] for sub in Constants.SUBREGIONS) for i in range(len(history_dates))])),
             "PredictionGraphPath": prediction_graph_path,
             "TargetYear": target_year,
-            "PredictedValue": predicted_value_for_target_year
+            "PredictedValue": predicted_value_for_target_year,
+            "PredictedPercentage": predicted_percentage,
+            "TotalAreaKm2": total_area_km2
         }
 
         with open(result_output_path, 'w') as f:
