@@ -1,4 +1,4 @@
-﻿using BuildUpLandApp.Constant;
+﻿using TerraBuild.Constant;
 using Microsoft.Win32;
 using Npgsql;
 using System.Diagnostics;
@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 
-namespace BuildUpLandApp.Pages.Klasifikasi
+namespace TerraBuild.Pages.Klasifikasi
 {
     /// <summary>
     /// Interaction logic for Klasifikasi.xaml

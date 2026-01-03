@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BuildUpLandApp.Constant
+namespace TerraBuild.Constant
 {
     public static class Constants
     {

@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace BuildUpLandApp
+namespace TerraBuild
 {
     /// <summary>
     /// Interaction logic for App.xaml

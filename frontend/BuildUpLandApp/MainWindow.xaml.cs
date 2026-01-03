@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BuildUpLandApp
+namespace TerraBuild
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -19,11 +19,24 @@ namespace BuildUpLandApp
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new Pages.Beranda.Beranda());
-            Uri iconUri = new Uri("pack://application:,,,/Assets/TerraBuilt.ico", UriKind.RelativeOrAbsolute);
-            this.Icon = BitmapFrame.Create(iconUri);
+            Loaded += MainWindow_Loaded;
         }
 
-        
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MainFrame.Navigate(new Pages.Beranda.Beranda());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.ToString(),
+                    "Navigation Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+            }
+        }
     }
 }

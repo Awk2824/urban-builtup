@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BuildUpLandApp.Pages.Tentang
+namespace TerraBuild.Pages.Tentang
 {
     /// <summary>
     /// Interaction logic for Tentang.xaml

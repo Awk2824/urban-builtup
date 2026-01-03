@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BuildUpLandApp.Pages.Panduan
+namespace TerraBuild.Pages.Panduan
 {
     /// <summary>
     /// Interaction logic for Panduan.xaml

@@ -1,4 +1,4 @@
-﻿using BuildUpLandApp.Constant;
+﻿using TerraBuild.Constant;
 using Npgsql;
 using System.Diagnostics;
 using System.Globalization;
@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 
-namespace BuildUpLandApp.Pages.TimeSeries
+namespace TerraBuild.Pages.TimeSeries
 {
     /// <summary>
     /// Interaction logic for TimeSeries.xaml
